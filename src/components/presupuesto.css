@@ -1,0 +1,233 @@
+.pres {
+  display: grid;
+  gap: 2rem;
+}
+
+/* Tipo de vehículo: tres tramos de tubo */
+.pres-tipo {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.pres-tipo label,
+.pres-chips label {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.75rem;
+  padding: 0 1.2rem;
+  border-radius: 999px;
+  box-shadow: 0 0 0 2px var(--steel) inset; /* taste-skill-ignore: neon glow is the tube material of the chosen world */
+  color: var(--ink);
+  font-weight: 600;
+  font-size: var(--step-small);
+  cursor: pointer;
+  transition:
+    box-shadow var(--t-hover) ease,
+    background-color var(--t-hover) ease,
+    transform var(--t-press) var(--ease-out);
+}
+
+.pres-tipo label:hover,
+.pres-chips label:hover {
+  box-shadow: 0 0 0 2px var(--neon) inset; /* taste-skill-ignore: neon glow is the tube material of the chosen world */
+}
+
+.pres-tipo label:active,
+.pres-chips label:active {
+  transform: scale(0.97);
+}
+
+.pres-tipo label.on,
+.pres-chips label.on {
+  background: var(--neon);
+  color: var(--wall);
+  box-shadow: 0 0 0 2px var(--neon-core) inset; /* taste-skill-ignore: inset ring marks the selected chip */
+}
+
+.pres-tipo input,
+.pres-chips input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.pres-tipo label:has(input:focus-visible),
+.pres-chips label:has(input:focus-visible) {
+  outline: 2px solid var(--neon-core);
+  outline-offset: 3px;
+}
+
+/* El auto en neón */
+.pres-car svg {
+  width: 100%;
+  max-width: 720px;
+  margin-inline: auto;
+  overflow: visible;
+}
+
+.pres-car .glass path {
+  fill: rgb(221 230 242 / 0.05);
+  stroke: var(--steel);
+  stroke-width: 2;
+}
+
+.pres-car .panel {
+  cursor: pointer;
+  outline: none;
+}
+
+/* En reposo cada panel es vidrio apagado; al marcarlo se enciende */
+.pres-car .panel path {
+  fill: rgb(221 230 242 / 0.04);
+  stroke: rgb(221 230 242 / 0.6);
+  stroke-width: 3;
+  stroke-linejoin: round;
+  transition:
+    fill var(--t-ui) ease,
+    stroke var(--t-ui) ease,
+    stroke-width var(--t-ui) ease;
+}
+
+.pres-car .panel:hover path {
+  stroke: var(--neon);
+}
+
+.pres-car .panel:focus-visible path {
+  stroke: var(--neon-core);
+  stroke-width: 5;
+}
+
+.pres-car .panel.on path {
+  fill: rgb(255 63 164 / 0.28);
+  stroke: var(--neon-core);
+  stroke-width: 4;
+  filter: drop-shadow(0 0 6px var(--neon)) drop-shadow(0 0 16px rgb(255 63 164 / 0.6)); /* taste-skill-ignore: neon glow is the tube material of the chosen world */
+}
+
+.pres-hint {
+  margin-top: 1rem;
+  text-align: center;
+  color: var(--muted);
+  min-height: 1.6em;
+}
+
+.pres-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.pres-chips legend {
+  width: 100%;
+  margin-bottom: 0.75rem;
+  font-weight: 600;
+}
+
+/* El pedido: la vista previa del mensaje acompaña a los controles */
+.pres-ticket {
+  display: grid;
+  grid-template-columns: 0.85fr 1.15fr;
+  gap: 1rem;
+  align-items: start;
+}
+
+.pres-left,
+.pres-right {
+  border-radius: var(--radius);
+  background: var(--wall-3);
+}
+
+.pres-left {
+  position: sticky;
+  top: 6rem;
+  padding: clamp(1.5rem, 3vw, 3rem);
+}
+
+.pres-head {
+  font-family: var(--font-head);
+  font-size: var(--step-h3);
+  color: var(--neon-core);
+}
+
+.pres-msg {
+  margin: 1.25rem 0 0;
+  white-space: pre-wrap;
+  font-family: var(--font-body);
+  font-size: var(--step-body);
+  line-height: 1.6;
+  color: var(--ink);
+}
+
+.pres-right {
+  display: grid;
+  gap: 1.25rem;
+  align-content: start;
+  padding: clamp(1.5rem, 3vw, 3rem);
+}
+
+.pres-field {
+  display: grid;
+  gap: 0.4rem;
+  font-weight: 600;
+  font-size: var(--step-small);
+}
+
+.pres-field input,
+.pres-field textarea {
+  width: 100%;
+  min-height: 3.25rem;
+  padding: 0.8rem 1rem;
+  border: 0;
+  border-radius: 14px;
+  background: var(--wall);
+  color: var(--ink);
+  font: 400 1rem var(--font-body);
+  caret-color: var(--neon);
+  resize: vertical;
+  box-shadow: 0 0 0 2px var(--steel) inset; /* taste-skill-ignore: neon glow is the tube material of the chosen world */
+  transition: box-shadow var(--t-hover) ease;
+}
+
+.pres-field input::placeholder,
+.pres-field textarea::placeholder {
+  color: #9d909a;
+}
+
+.pres-field input:focus,
+.pres-field textarea:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px var(--neon) inset, var(--glow-soft); /* taste-skill-ignore: neon glow is the tube material of the chosen world */
+}
+
+.pres-send {
+  justify-content: center;
+  margin-top: 0.5rem;
+}
+
+.pres-note {
+  font-size: var(--step-small);
+  color: var(--muted);
+}
+
+@media (max-width: 860px) {
+  .pres-ticket {
+    grid-template-columns: 1fr;
+  }
+
+  .pres-left {
+    position: static;
+    order: 2;
+  }
+
+  .pres-right {
+    order: 1;
+  }
+}

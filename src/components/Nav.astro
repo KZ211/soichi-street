@@ -1,0 +1,141 @@
+---
+import { Image } from 'astro:assets';
+import cara from '../assets/mascota-cara.jpg';
+import { site, waDefault } from '../data/site';
+import Icon from './Icon.astro';
+---
+
+<header class="nav">
+  <a href="#inicio" class="mark" aria-label={`${site.name}, inicio`}>
+    <Image src={cara} alt="" width={88} height={88} class="face" loading="eager" />
+    <span class="name">{site.name}</span>
+  </a>
+  <nav aria-label="Secciones">
+    <ul>
+      <li><a href="#servicios">Servicios</a></li>
+      <li><a href="#trabajos">Trabajos</a></li>
+      <li><a href="#proceso">Proceso</a></li>
+      <li><a href="#presupuesto">Presupuesto</a></li>
+    </ul>
+  </nav>
+  <a class="wa" href={waDefault} target="_blank" rel="noopener">
+    <Icon name="whatsapp" />
+    <span>WhatsApp</span>
+  </a>
+</header>
+
+<style>
+  .nav {
+    position: fixed;
+    inset: 0 0 auto 0;
+    z-index: 20;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 0.75rem var(--margin);
+    background: rgb(11 10 14 / 0.86);
+    backdrop-filter: blur(10px); /* taste-skill-ignore: the one sticky bar */
+  }
+
+  .mark {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    text-decoration: none;
+  }
+
+  .face {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    box-shadow: 0 0 0 2px var(--neon), var(--glow-soft); /* taste-skill-ignore: neon glow is the tube material of the chosen world */
+  }
+
+  .name {
+    font-family: var(--font-script);
+    font-size: 2rem;
+    line-height: 1;
+    white-space: nowrap;
+    color: var(--neon-core);
+  }
+
+  nav {
+    margin-left: auto;
+  }
+
+  ul {
+    display: flex;
+    gap: 1.75rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  nav a {
+    display: inline-block;
+    padding: 0.5rem 0;
+    font-weight: 600;
+    font-size: var(--step-small);
+    text-decoration: none;
+    color: var(--muted);
+    transition: color var(--t-hover) ease;
+  }
+
+  nav a:hover {
+    color: var(--neon-core);
+  }
+
+  .wa {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    min-height: 2.75rem;
+    padding: 0 1.1rem;
+    border-radius: 999px;
+    background: var(--neon);
+    color: var(--wall);
+    font-weight: 700;
+    font-size: var(--step-small);
+    text-decoration: none;
+    transition: transform var(--t-press) var(--ease-out);
+  }
+
+  .wa:active {
+    transform: scale(0.96);
+  }
+
+  .wa :global(svg) {
+    width: 1.2rem;
+    height: 1.2rem;
+  }
+
+  @media (max-width: 860px) {
+    nav {
+      display: none;
+    }
+
+    .wa {
+      margin-left: auto;
+    }
+  }
+
+  @media (max-width: 420px) {
+    .name {
+      font-size: 1.6rem;
+    }
+
+    .wa span {
+      position: absolute;
+      width: 1px;
+      height: 1px; /* taste-skill-ignore: visually hidden label, not a rule */
+      overflow: hidden;
+      clip: rect(0 0 0 0);
+    }
+
+    .wa {
+      width: 2.75rem;
+      padding: 0;
+      justify-content: center;
+    }
+  }
+</style>

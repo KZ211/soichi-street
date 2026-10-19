@@ -1,0 +1,309 @@
+---
+import { Image, getImage } from 'astro:assets';
+import { proceso } from '../data/site';
+
+const posters = Object.fromEntries(
+  await Promise.all(
+    proceso.filter((e) => e.video).map(async (e) => [e.id, (await getImage({ src: e.image, width: 560, format: 'webp' })).src]),
+  ),
+);
+
+// Abre en el barniz: es la etapa que tiene el clip real del taller.
+const openIndex = proceso.findIndex((e) => e.video);
+---
+
+<section class="proceso" id="proceso" aria-labelledby="proceso-title" data-reveal>
+  <div class="wrap">
+    <div class="intro">
+      <h2 id="proceso-title" data-rise>Del golpe al espejo</h2>
+      <p data-rise style="--i:1">
+        Cada trabajo pasa por las mismas cinco etapas. Así se ve en los reels del taller, de la chapa lijada al brillo
+        final.
+      </p>
+    </div>
+
+    <ol class="strip" role="list">
+      {
+        proceso.map((e, i) => (
+          <li
+            class:list={['stage', { open: i === openIndex }]}
+            style={`--i:${i + 2}`}
+            data-rise
+          >
+            <button type="button" class="head" aria-expanded={i === openIndex ? 'true' : 'false'} aria-controls={`etapa-${e.id}`}>
+              <span class="n">{i + 1}</span>
+              <span class="name">{e.name}</span>
+            </button>
+            <div class="body" id={`etapa-${e.id}`}>
+              <p>{e.text}</p>
+              {e.video ? (
+                <video class="pic clip" src={e.video} poster={posters[e.id]} muted loop playsinline autoplay preload="none" aria-label={e.alt} />
+              ) : (
+                <Image src={e.image} alt={e.alt} widths={[360, 560]} sizes="(min-width: 900px) 24vw, 80vw" class="pic" />
+              )}
+            </div>
+          </li>
+        ))
+      }
+    </ol>
+  </div>
+</section>
+
+<script>
+  // El clip del barniz solo corre si la persona no pidió menos movimiento.
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    document.querySelectorAll<HTMLVideoElement>('.proceso video').forEach((v) => {
+      v.removeAttribute('autoplay');
+      v.pause();
+    });
+  }
+
+  const stages = document.querySelectorAll<HTMLElement>('.proceso .stage');
+  stages.forEach((stage) => {
+    stage.querySelector('.head')?.addEventListener('click', () => {
+      stages.forEach((s) => {
+        const open = s === stage;
+        s.classList.toggle('open', open);
+        s.querySelector('.head')?.setAttribute('aria-expanded', String(open));
+      });
+    });
+  });
+</script>
+
+<style>
+  .proceso {
+    padding-block: var(--section);
+  }
+
+  .intro {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 1rem;
+    align-items: end;
+  }
+
+  .intro h2 {
+    grid-column: 1 / 6;
+  }
+
+  .intro p {
+    grid-column: 7 / 12;
+    max-width: 46ch;
+  }
+
+  .strip {
+    display: flex;
+    height: 520px;
+    margin: 4rem 0 0;
+    padding: 0;
+    list-style: none;
+    border-radius: var(--radius);
+    overflow: hidden;
+  }
+
+  /* Cada etapa es un tramo de tubo: apagado hasta que se abre */
+  .stage {
+    position: relative;
+    flex: 1 1 0;
+    min-width: 0;
+    background: var(--wall-2);
+    color: var(--ink);
+    transition: flex-grow 450ms var(--ease-in-out);
+  }
+
+  .stage:nth-child(even) {
+    background: var(--wall-3);
+  }
+
+  .stage::before {
+    content: '';
+    position: absolute;
+    top: 14px;
+    left: 14px;
+    right: 14px;
+    height: 4px;
+    border-radius: 2px;
+    background: rgb(221 230 242 / 0.25);
+    transition: background-color var(--t-ui) ease;
+  }
+
+  .stage.open::before {
+    background: var(--neon);
+    box-shadow: 0 0 2px var(--neon-core), 0 0 14px var(--neon); /* taste-skill-ignore: the lit tube of the open stage */
+  }
+
+  .stage.open {
+    flex-grow: 6;
+  }
+
+  .head {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: flex-end;
+    padding: 1.5rem;
+    background: none;
+    border: 0;
+    color: inherit;
+    cursor: pointer;
+    text-align: left;
+  }
+
+  .stage:not(.open) .head:hover {
+    background: rgb(255 255 255 / 0.06);
+  }
+
+  .n {
+    position: absolute;
+    top: 1.25rem;
+    left: 1.5rem;
+    font: 600 var(--step-small) var(--font-body);
+    color: var(--muted);
+  }
+
+  .name {
+    font-family: var(--font-head);
+    font-size: var(--step-body);
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    white-space: nowrap;
+  }
+
+  .open .head {
+    inset: 0 0 auto 0;
+    height: auto;
+    padding: 1.5rem 2rem;
+    cursor: default;
+  }
+
+  .open .n {
+    position: static;
+    margin-right: 0.75rem;
+  }
+
+  .open .name {
+    writing-mode: horizontal-tb;
+    transform: none;
+    font-size: var(--step-h3);
+  }
+
+  .open .head {
+    align-items: baseline;
+    padding-top: 4.5rem;
+  }
+
+  .open .n {
+    position: absolute;
+  }
+
+  .body {
+    display: none;
+  }
+
+  .open .body {
+    position: absolute;
+    inset: 9rem 2rem 2rem 2rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    align-items: end;
+  }
+
+  .body p {
+    max-width: 36ch;
+    font-size: var(--step-body);
+  }
+
+  .pic {
+    width: 100%;
+    height: 100%;
+    max-height: 340px;
+    object-fit: cover;
+    border-radius: calc(var(--radius) - 6px);
+    align-self: stretch;
+  }
+
+  /* El reel trae su leyenda abajo: se encuadra la pistola */
+  .clip {
+    object-position: 50% 12%;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .open .body {
+      animation: body-in 500ms 150ms var(--ease-out) both;
+    }
+  }
+
+  @keyframes body-in {
+    from {
+      opacity: 0;
+      transform: translateY(12px);
+    }
+  }
+
+  @media (max-width: 900px) {
+    .intro {
+      grid-template-columns: 1fr;
+    }
+
+    .intro h2,
+    .intro p {
+      grid-column: 1;
+    }
+
+    .stage::before {
+      top: 0;
+      left: 0;
+      right: 0;
+      border-radius: 0;
+    }
+
+    .strip {
+      flex-direction: column;
+      height: auto;
+      margin-top: 2.5rem;
+    }
+
+    .stage,
+    .stage.open {
+      flex: none;
+    }
+
+    .head,
+    .open .head {
+      position: relative;
+      inset: auto;
+      min-height: 4rem;
+      padding: 1rem 1.25rem;
+      align-items: center;
+    }
+
+    .n,
+    .open .n {
+      position: static;
+      margin-right: 0.75rem;
+    }
+
+    .name,
+    .open .name {
+      writing-mode: horizontal-tb;
+      transform: none;
+      font-size: var(--step-body);
+    }
+
+    .open .body {
+      position: static;
+      grid-template-columns: 1fr;
+      gap: 1rem;
+      padding: 0 1.25rem 1.5rem;
+    }
+
+    .body p {
+      font-size: var(--step-body);
+    }
+
+    .pic {
+      max-height: 260px;
+    }
+  }
+</style>

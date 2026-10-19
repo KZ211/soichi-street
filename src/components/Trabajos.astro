@@ -1,0 +1,268 @@
+---
+import { Image } from 'astro:assets';
+import { trabajos, site } from '../data/site';
+import Icon from './Icon.astro';
+---
+
+<section class="trabajos" id="trabajos" aria-labelledby="trabajos-title" data-reveal>
+  <div class="wrap">
+    <div class="tiles">
+      <h2 id="trabajos-title" class="title" data-rise>Trabajos <span>terminados</span></h2>
+      {
+        trabajos.map((t, i) => (
+          <figure class:list={['tile', t.span]} data-rise style={`--i:${(i % 4) + 1}`} data-pair={t.before ? '' : undefined}>
+            <div class="frame">
+              {t.before && (
+                <Image
+                  src={t.before}
+                  alt={t.beforeAlt ?? ''}
+                  widths={[360, 560, 720]}
+                  sizes={t.span === 'wide' ? '(min-width: 900px) 45vw, 92vw' : '(min-width: 900px) 22vw, 46vw'}
+                  class="img before"
+                />
+              )}
+              <Image
+                src={t.image}
+                alt={t.alt}
+                widths={[360, 560, 720]}
+                sizes={t.span === 'wide' ? '(min-width: 900px) 45vw, 92vw' : '(min-width: 900px) 22vw, 46vw'}
+                class="img after"
+              />
+              {t.before && (
+                <button type="button" class="switch" aria-pressed="false" aria-label={`Ver antes: ${t.title}`}>
+                  <span class="state">Después</span>
+                  <span class="knob" aria-hidden="true" />
+                </button>
+              )}
+            </div>
+            <figcaption>
+              <span class="t">{t.title}</span>
+              <span class="d">{t.detail}</span>
+            </figcaption>
+          </figure>
+        ))
+      }
+    </div>
+    <a class="more" href={site.instagram} target="_blank" rel="noopener">
+      <Icon name="instagram" />
+      Más trabajos en {site.instagramHandle}
+    </a>
+  </div>
+</section>
+
+<script>
+  // Interruptor antes/después: apaga el trabajo terminado y muestra cómo llegó el auto.
+  document.querySelectorAll<HTMLButtonElement>('.trabajos .switch').forEach((btn) => {
+    const frame = btn.closest('.frame');
+    const state = btn.querySelector('.state');
+    const title = btn.getAttribute('aria-label')?.replace(/^Ver antes: /, '') ?? '';
+    btn.addEventListener('click', () => {
+      const showBefore = btn.getAttribute('aria-pressed') !== 'true';
+      btn.setAttribute('aria-pressed', String(showBefore));
+      frame?.classList.toggle('show-before', showBefore);
+      if (state) state.textContent = showBefore ? 'Antes' : 'Después';
+      btn.setAttribute('aria-label', `${showBefore ? 'Ver después' : 'Ver antes'}: ${title}`);
+    });
+  });
+</script>
+
+<style>
+  .trabajos {
+    padding-block: var(--section);
+  }
+
+  .tiles {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2.5rem 1rem;
+    align-items: start;
+  }
+
+  .title {
+    grid-column: 3;
+    grid-row: 1;
+    align-self: center;
+    padding-inline: 0.5rem;
+  }
+
+  .title span {
+    display: block;
+    color: var(--neon-core);
+  }
+
+  .tile {
+    margin: 0;
+  }
+
+  /* Cada trabajo en su lugar fijo, sin celdas vacías */
+  .tile:nth-of-type(1) { grid-area: 1 / 1 / 2 / 3; }
+  .tile:nth-of-type(2) { grid-area: 1 / 4; }
+  .tile:nth-of-type(3) { grid-area: 2 / 1; }
+  .tile:nth-of-type(4) { grid-area: 2 / 2; }
+  .tile:nth-of-type(5) { grid-area: 2 / 3 / 3 / 5; }
+  .tile:nth-of-type(6) { grid-area: 3 / 1; }
+  .tile:nth-of-type(7) { grid-area: 3 / 2 / 4 / 4; }
+  .tile:nth-of-type(8) { grid-area: 3 / 4; }
+
+  .frame {
+    position: relative;
+    overflow: hidden;
+    border-radius: var(--radius);
+    background: var(--wall-2);
+    aspect-ratio: 4 / 5;
+  }
+
+  .wide .frame {
+    aspect-ratio: 3 / 2;
+  }
+
+  .img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition:
+      opacity 420ms ease,
+      transform 700ms var(--ease-out);
+  }
+
+  .tile:hover .img {
+    transform: scale(1.03);
+  }
+
+  .before {
+    opacity: 0;
+  }
+
+  .show-before .before {
+    opacity: 1;
+  }
+
+  .show-before .after {
+    opacity: 0;
+  }
+
+  /* El interruptor es un tubo corto que se apaga al ver el antes */
+  .switch {
+    position: absolute;
+    left: 0.75rem;
+    bottom: 0.75rem;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    min-height: 2.75rem;
+    padding: 0 0.5rem 0 1rem;
+    border-radius: 999px;
+    border: 0;
+    background: rgb(11 10 14 / 0.82);
+    color: var(--ink);
+    font: 600 var(--step-small) var(--font-body);
+    cursor: pointer;
+    transition: transform var(--t-press) var(--ease-out);
+  }
+
+  .switch:active {
+    transform: scale(0.96);
+  }
+
+  .knob {
+    position: relative;
+    width: 2.6rem;
+    height: 1.4rem;
+    border-radius: 999px;
+    background: var(--neon);
+    box-shadow: var(--glow-soft); /* taste-skill-ignore: neon glow is the tube material of the chosen world */
+    transition: background-color var(--t-ui) ease;
+  }
+
+  .knob::after {
+    content: '';
+    position: absolute;
+    top: 3px;
+    left: calc(100% - 3px - 1rem);
+    width: 1rem;
+    height: 1rem;
+    border-radius: 50%;
+    background: var(--neon-core);
+    transition: left var(--t-ui) var(--ease-out);
+  }
+
+  .switch[aria-pressed='true'] .knob {
+    background: var(--steel);
+    box-shadow: none; /* taste-skill-ignore: neon glow is the tube material of the chosen world */
+  }
+
+  .switch[aria-pressed='true'] .knob::after {
+    left: 3px;
+    background: var(--muted);
+  }
+
+  figcaption {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    padding-top: 0.6rem;
+    font-size: var(--step-small);
+  }
+
+  .t {
+    font-weight: 600;
+  }
+
+  .d {
+    color: var(--muted);
+    text-align: right;
+  }
+
+  .more {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin-top: 3rem;
+    font-weight: 600;
+    color: var(--neon-core);
+    text-underline-offset: 0.3em;
+    text-decoration-color: var(--neon);
+  }
+
+  .more :global(svg) {
+    width: 1.4rem;
+    height: 1.4rem;
+  }
+
+  @media (max-width: 900px) {
+    .tiles {
+      grid-template-columns: 1fr 1fr;
+      gap: 1.75rem 0.65rem;
+    }
+
+    .title {
+      grid-area: auto;
+      grid-column: 1 / -1;
+      font-size: clamp(2.5rem, 10vw, 3.5rem);
+      padding: 0;
+    }
+
+    .title span {
+      display: inline;
+    }
+
+    .tile:nth-of-type(n) {
+      grid-area: auto;
+    }
+
+    .tile.wide {
+      grid-column: 1 / -1;
+    }
+
+    figcaption {
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .d {
+      text-align: left;
+    }
+  }
+</style>

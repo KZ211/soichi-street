@@ -1,0 +1,422 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-19T19:18:25.667204+00:00",
+  "title": "Design System: Soichi Street",
+  "extensions": {
+    "colorMeta": {
+      "neon": {
+        "role": "primary",
+        "displayName": "Discharge Pink",
+        "canonical": "#ff3fa4",
+        "tonalRamp": [
+          "#3d0721",
+          "#650d39",
+          "#8f1352",
+          "#b8166f",
+          "#e02a8c",
+          "#ff3fa4",
+          "#ff8ac6",
+          "#ffd1ea"
+        ]
+      },
+      "neon-hover": {
+        "role": "primary",
+        "displayName": "Discharge Hover",
+        "canonical": "#ff5cb3",
+        "tonalRamp": [
+          "#3d0721",
+          "#650d39",
+          "#8f1352",
+          "#b8166f",
+          "#e02a8c",
+          "#ff3fa4",
+          "#ff8ac6",
+          "#ffd1ea"
+        ]
+      },
+      "neon-core": {
+        "role": "primary",
+        "displayName": "Glass Core",
+        "canonical": "#ffd1ea",
+        "tonalRamp": [
+          "#3d0721",
+          "#650d39",
+          "#8f1352",
+          "#b8166f",
+          "#e02a8c",
+          "#ff3fa4",
+          "#ff8ac6",
+          "#ffd1ea"
+        ]
+      },
+      "neon-deep": {
+        "role": "primary",
+        "displayName": "Deep Discharge",
+        "canonical": "#b8166f",
+        "tonalRamp": [
+          "#3d0721",
+          "#650d39",
+          "#8f1352",
+          "#b8166f",
+          "#e02a8c",
+          "#ff3fa4",
+          "#ff8ac6",
+          "#ffd1ea"
+        ]
+      },
+      "electrode": {
+        "role": "secondary",
+        "displayName": "Electrode Red",
+        "canonical": "#ff4b3b",
+        "tonalRamp": [
+          "#3a0b08",
+          "#661410",
+          "#931d17",
+          "#c42a20",
+          "#ff4b3b",
+          "#ff7a6d",
+          "#ffaba2",
+          "#ffdcd8"
+        ]
+      },
+      "wall": {
+        "role": "neutral",
+        "displayName": "Room Wall",
+        "canonical": "#0b0a0e",
+        "tonalRamp": [
+          "#0b0a0e",
+          "#15121a",
+          "#201a26",
+          "#2e2636",
+          "#4a4252",
+          "#7a6f82",
+          "#c3b6c0",
+          "#f6eef3"
+        ]
+      },
+      "wall-2": {
+        "role": "neutral",
+        "displayName": "Wall Shade",
+        "canonical": "#15121a",
+        "tonalRamp": [
+          "#0b0a0e",
+          "#15121a",
+          "#201a26",
+          "#2e2636",
+          "#4a4252",
+          "#7a6f82",
+          "#c3b6c0",
+          "#f6eef3"
+        ]
+      },
+      "wall-3": {
+        "role": "neutral",
+        "displayName": "Wall Recess",
+        "canonical": "#201a26",
+        "tonalRamp": [
+          "#0b0a0e",
+          "#15121a",
+          "#201a26",
+          "#2e2636",
+          "#4a4252",
+          "#7a6f82",
+          "#c3b6c0",
+          "#f6eef3"
+        ]
+      },
+      "steel": {
+        "role": "neutral",
+        "displayName": "Bracket Steel",
+        "canonical": "#4a4252",
+        "tonalRamp": [
+          "#0b0a0e",
+          "#15121a",
+          "#201a26",
+          "#2e2636",
+          "#4a4252",
+          "#7a6f82",
+          "#c3b6c0",
+          "#f6eef3"
+        ]
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Lamp Ink",
+        "canonical": "#f6eef3",
+        "tonalRamp": [
+          "#0b0a0e",
+          "#15121a",
+          "#201a26",
+          "#2e2636",
+          "#4a4252",
+          "#7a6f82",
+          "#c3b6c0",
+          "#f6eef3"
+        ]
+      },
+      "muted": {
+        "role": "neutral",
+        "displayName": "Dim Ink",
+        "canonical": "#c3b6c0",
+        "tonalRamp": [
+          "#0b0a0e",
+          "#15121a",
+          "#201a26",
+          "#2e2636",
+          "#4a4252",
+          "#7a6f82",
+          "#c3b6c0",
+          "#f6eef3"
+        ]
+      },
+      "glass": {
+        "role": "neutral",
+        "displayName": "Clear Glass",
+        "canonical": "rgb(221 230 242 / 0.22)",
+        "tonalRamp": [
+          "#1c1f24",
+          "#2f343b",
+          "#474e58",
+          "#636c78",
+          "#838d9a",
+          "#a6afbb",
+          "#c6cdd7",
+          "#dde6f2"
+        ]
+      },
+      "blackout-paint": {
+        "role": "neutral",
+        "displayName": "Blackout Paint",
+        "canonical": "#2a2230",
+        "tonalRamp": [
+          "#0b0a0e",
+          "#15121a",
+          "#201a26",
+          "#2e2636",
+          "#4a4252",
+          "#7a6f82",
+          "#c3b6c0",
+          "#f6eef3"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "sign": {
+        "displayName": "Sign",
+        "purpose": "The business name only, as SVG neon lettering (hero, nav mark, footer)."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "One short heading per section."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Hero tagline, service list, open stage name, ticket heading."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Reading copy, 36-52ch."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Nav links, chips, captions, field labels; sentence case."
+      }
+    },
+    "shadows": [
+      {
+        "name": "glow",
+        "value": "0 0 2px var(--neon-core), 0 0 10px var(--neon), 0 0 28px rgb(255 63 164 / 0.55)",
+        "purpose": "A fully lit tube."
+      },
+      {
+        "name": "glow-soft",
+        "value": "0 0 8px rgb(255 63 164 / 0.45)",
+        "purpose": "A short lit tube: service run, active bullet, switch knob, focused input."
+      },
+      {
+        "name": "discharge-filter",
+        "value": "drop-shadow(0 0 2px var(--neon)) drop-shadow(0 0 12px rgb(255 63 164 / 0.75))",
+        "purpose": "SVG tube lettering and marked car panels."
+      },
+      {
+        "name": "tube-ring",
+        "value": "0 0 0 2px var(--steel) inset",
+        "purpose": "Drawn edge of chips and fields at rest; neon on hover/focus, neon-core when selected."
+      }
+    ],
+    "motion": [
+      {
+        "name": "ease-out",
+        "value": "cubic-bezier(0.22, 1, 0.36, 1)",
+        "purpose": "Entrances, presses, knob and bullet changes."
+      },
+      {
+        "name": "ease-in-out",
+        "value": "cubic-bezier(0.76, 0, 0.24, 1)",
+        "purpose": "Process stage expansion (450ms)."
+      },
+      {
+        "name": "t-press",
+        "value": "140ms",
+        "purpose": "Press scale (0.96-0.97)."
+      },
+      {
+        "name": "t-hover",
+        "value": "180ms",
+        "purpose": "Hover color and ring changes."
+      },
+      {
+        "name": "t-ui",
+        "value": "240ms",
+        "purpose": "State changes: photo swap, knob, panel fill."
+      },
+      {
+        "name": "t-reveal",
+        "value": "800ms",
+        "purpose": "Rise-in entrance, 24px, staggered 80ms, reduced-motion gated."
+      },
+      {
+        "name": "ignite",
+        "value": "bend 1.2s + electrodes 0.25s + stepped flicker 1.1s",
+        "purpose": "Hero sign ignition only."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "xs",
+        "value": "420px"
+      },
+      {
+        "name": "sm",
+        "value": "640px"
+      },
+      {
+        "name": "md",
+        "value": "860px"
+      },
+      {
+        "name": "lg",
+        "value": "900px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Lit tube with electrode caps; the WhatsApp call to action.",
+      "html": "<a class=\"ds-btn\" href=\"#\"><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M5 12h14M13 6l6 6-6 6\"/></svg>Pedir presupuesto por WhatsApp</a>",
+      "css": ".ds-btn{position:relative;display:inline-flex;align-items:center;gap:.6em;min-height:3.5rem;padding:.9rem 1.9rem;border-radius:999px;background:var(--neon,#ff3fa4);color:var(--wall,#0b0a0e);font:700 1.125rem 'Barlow',system-ui,sans-serif;text-decoration:none;border:0;cursor:pointer;transition:transform 140ms cubic-bezier(.22,1,.36,1),background-color 180ms ease}.ds-btn::before,.ds-btn::after{content:'';position:absolute;top:50%;width:10px;height:6px;margin-top:-3px;border-radius:2px;background:var(--electrode,#ff4b3b)}.ds-btn::before{left:-8px}.ds-btn::after{right:-8px}.ds-btn:hover{background:#ff5cb3}.ds-btn:active{transform:scale(.97)}.ds-btn:focus-visible{outline:2px solid var(--neon-core,#ffd1ea);outline-offset:3px}.ds-btn svg{width:1.25em;height:1.25em}"
+    },
+    {
+      "name": "Ghost Button",
+      "kind": "button",
+      "refersTo": "button-ghost",
+      "description": "Unfilled tube outline for the secondary action.",
+      "html": "<a class=\"ds-btn-ghost\" href=\"#\">Ver trabajos</a>",
+      "css": ".ds-btn-ghost{position:relative;display:inline-flex;align-items:center;min-height:3.5rem;padding:.9rem 1.9rem;border-radius:999px;background:transparent;color:var(--ink,#f6eef3);outline:2px solid var(--neon,#ff3fa4);outline-offset:-2px;font:700 1.125rem 'Barlow',system-ui,sans-serif;text-decoration:none;transition:background-color 180ms ease,transform 140ms cubic-bezier(.22,1,.36,1)}.ds-btn-ghost::before,.ds-btn-ghost::after{content:'';position:absolute;top:50%;width:10px;height:6px;margin-top:-3px;border-radius:2px;background:var(--electrode,#ff4b3b)}.ds-btn-ghost::before{left:-8px}.ds-btn-ghost::after{right:-8px}.ds-btn-ghost:hover{background:rgb(255 63 164 / .14)}.ds-btn-ghost:active{transform:scale(.97)}.ds-btn-ghost:focus-visible{outline-color:var(--neon-core,#ffd1ea)}"
+    },
+    {
+      "name": "Chip",
+      "kind": "chip",
+      "refersTo": "chip",
+      "description": "Pill selector with steel ring at rest and pink fill when selected.",
+      "html": "<div class=\"ds-chips\"><button class=\"ds-chip on\" aria-pressed=\"true\">Auto o camioneta</button><button class=\"ds-chip\" aria-pressed=\"false\">Moto</button><button class=\"ds-chip\" aria-pressed=\"false\">Pieza suelta</button></div>",
+      "css": ".ds-chips{display:flex;flex-wrap:wrap;gap:.75rem}.ds-chip{display:inline-flex;align-items:center;min-height:2.75rem;padding:0 1.2rem;border:0;border-radius:999px;background:transparent;box-shadow:0 0 0 2px var(--steel,#4a4252) inset;color:var(--ink,#f6eef3);font:600 .9375rem 'Barlow',system-ui,sans-serif;cursor:pointer;transition:box-shadow 180ms ease,background-color 180ms ease,transform 140ms cubic-bezier(.22,1,.36,1)}.ds-chip:hover{box-shadow:0 0 0 2px var(--neon,#ff3fa4) inset}.ds-chip:active{transform:scale(.97)}.ds-chip:focus-visible{outline:2px solid var(--neon-core,#ffd1ea);outline-offset:3px}.ds-chip.on{background:var(--neon,#ff3fa4);color:var(--wall,#0b0a0e);box-shadow:0 0 0 2px var(--neon-core,#ffd1ea) inset}"
+    },
+    {
+      "name": "Text Field",
+      "kind": "input",
+      "refersTo": "input",
+      "description": "Wall-dark field with a steel tube ring that lights on focus.",
+      "html": "<label class=\"ds-field\">Modelo y año<input placeholder=\"Ej: Honda Civic 1999\"></label>",
+      "css": ".ds-field{display:grid;gap:.4rem;font:600 .9375rem 'Barlow',system-ui,sans-serif;color:var(--ink,#f6eef3)}.ds-field input{min-height:3.25rem;padding:.8rem 1rem;border:0;border-radius:14px;background:var(--wall,#0b0a0e);color:var(--ink,#f6eef3);font:400 1rem 'Barlow',system-ui,sans-serif;caret-color:var(--neon,#ff3fa4);box-shadow:0 0 0 2px var(--steel,#4a4252) inset;transition:box-shadow 180ms ease}.ds-field input::placeholder{color:#9d909a}.ds-field input:focus{outline:none;box-shadow:0 0 0 2px var(--neon,#ff3fa4) inset,0 0 8px rgb(255 63 164 / .45)}"
+    },
+    {
+      "name": "Navigation",
+      "kind": "nav",
+      "refersTo": "nav-bar",
+      "description": "Fixed bar: neon-ringed mascot mark and script name, muted links, WhatsApp pill.",
+      "html": "<header class=\"ds-nav\"><a class=\"ds-mark\" href=\"#\"><span class=\"ds-face\"></span><span class=\"ds-name\">Soichi Street</span></a><ul><li><a href=\"#\">Servicios</a></li><li><a href=\"#\">Trabajos</a></li><li><a href=\"#\">Proceso</a></li></ul><a class=\"ds-wa\" href=\"#\">WhatsApp</a></header>",
+      "css": ".ds-nav{display:flex;align-items:center;gap:1.5rem;padding:.75rem 2rem;background:rgb(11 10 14 / .86);backdrop-filter:blur(10px)}.ds-mark{display:flex;align-items:center;gap:.75rem;text-decoration:none}.ds-face{width:44px;height:44px;border-radius:50%;background:#15121a;box-shadow:0 0 0 2px #ff3fa4,0 0 8px rgb(255 63 164 / .45)}.ds-name{font:400 2rem/1 'Sacramento',cursive;color:#ffd1ea}.ds-nav ul{display:flex;gap:1.75rem;list-style:none;margin:0 0 0 auto;padding:0}.ds-nav ul a{font:600 .9375rem 'Barlow',sans-serif;color:#c3b6c0;text-decoration:none;transition:color 180ms ease}.ds-nav ul a:hover,.ds-nav ul a:focus-visible{color:#ffd1ea}.ds-wa{display:inline-flex;align-items:center;min-height:2.75rem;padding:0 1.1rem;border-radius:999px;background:#ff3fa4;color:#0b0a0e;font:700 .9375rem 'Barlow',sans-serif;text-decoration:none;transition:transform 140ms cubic-bezier(.22,1,.36,1)}.ds-wa:active{transform:scale(.96)}"
+    },
+    {
+      "name": "Panel",
+      "kind": "card",
+      "refersTo": "panel",
+      "description": "Wall-recess container with 22px corners; holds the quote ticket.",
+      "html": "<div class=\"ds-panel\"><p class=\"ds-panel-h\">Tu pedido</p><p>Hola Soichi Street! Quiero pedir un presupuesto.</p></div>",
+      "css": ".ds-panel{max-width:26rem;padding:clamp(1.5rem,3vw,3rem);border-radius:22px;background:var(--wall-3,#201a26);color:var(--ink,#f6eef3);font:400 1.125rem/1.6 'Barlow',sans-serif}.ds-panel-h{margin:0 0 1.25rem;font:400 2rem 'Tilt Neon',sans-serif;color:var(--neon-core,#ffd1ea)}.ds-panel p{margin:0}"
+    },
+    {
+      "name": "Tube Bullet List",
+      "kind": "custom",
+      "refersTo": "title",
+      "description": "Service list whose bullet is a short tube that lights when selected.",
+      "html": "<ul class=\"ds-tubes\"><li><button aria-pressed=\"true\">Chapa</button></li><li><button aria-pressed=\"false\">Pintura</button></li><li><button aria-pressed=\"false\">Pulido</button></li></ul>",
+      "css": ".ds-tubes{list-style:none;margin:0;padding:0}.ds-tubes button{display:flex;align-items:center;gap:.9rem;padding:.2rem 0;background:none;border:0;cursor:pointer;font:400 2rem/1.15 'Tilt Neon',sans-serif;color:var(--muted,#c3b6c0);transition:color 180ms ease}.ds-tubes button::before{content:'';width:.9em;height:4px;border-radius:2px;background:var(--steel,#4a4252);transition:background-color 180ms ease,box-shadow 180ms ease,width 240ms cubic-bezier(.22,1,.36,1)}.ds-tubes button:hover,.ds-tubes button[aria-pressed=true]{color:var(--ink,#f6eef3)}.ds-tubes button[aria-pressed=true]::before{width:1.4em;background:var(--neon,#ff3fa4);box-shadow:0 0 8px rgb(255 63 164 / .45)}.ds-tubes button:focus-visible{outline:2px solid var(--neon-core,#ffd1ea);outline-offset:3px}"
+    },
+    {
+      "name": "Before/After Switch",
+      "kind": "custom",
+      "refersTo": "chip",
+      "description": "A short tube that goes dark to show how the car arrived.",
+      "html": "<button class=\"ds-switch\" aria-pressed=\"false\"><span>Después</span><span class=\"ds-knob\"></span></button>",
+      "css": ".ds-switch{display:flex;align-items:center;gap:.6rem;min-height:2.75rem;padding:0 .5rem 0 1rem;border:0;border-radius:999px;background:rgb(11 10 14 / .82);color:#f6eef3;font:600 .9375rem 'Barlow',sans-serif;cursor:pointer;transition:transform 140ms cubic-bezier(.22,1,.36,1)}.ds-switch:active{transform:scale(.96)}.ds-switch:focus-visible{outline:2px solid #ffd1ea;outline-offset:3px}.ds-knob{position:relative;width:2.6rem;height:1.4rem;border-radius:999px;background:#ff3fa4;box-shadow:0 0 8px rgb(255 63 164 / .45);transition:background-color 240ms ease}.ds-knob::after{content:'';position:absolute;top:3px;left:calc(100% - 3px - 1rem);width:1rem;height:1rem;border-radius:50%;background:#ffd1ea;transition:left 240ms cubic-bezier(.22,1,.36,1)}.ds-switch[aria-pressed=true] .ds-knob{background:#4a4252;box-shadow:none}.ds-switch[aria-pressed=true] .ds-knob::after{left:3px;background:#c3b6c0}"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Shop Sign, Bent as One Tube",
+    "overview": "The whole site is the workshop's own neon sign hung on a room-black wall. One pink gas discharge, held inside pale glass, runs from the script name through the service list, the process stages, the quote builder's car outline and back out as the footer sign. Everything that is not tube is wall: near-black planes in three close tones, cool steel for mounts and unlit glass, and plain light text for reading.\n\nLight is a material here, not decoration. A thing glows because it is a tube, and a tube is lit because it is on: the selected service, the open process stage, the marked car panel, the switch that shows the finished job. Unlit tubes stay steel or clear glass, so the page reads as a circuit that the visitor switches on piece by piece. Density is low and sectional; each band of the page carries one device and one heading.\n\nPhotos of real jobs sit as lit panels with the tube's rounded corners, never framed with borders or captions inside the image. The mascot is the mark: a small round face ringed in neon at the top-left and in the quote section, and the full figure beside the footer sign.",
+    "keyCharacteristics": [
+      "Room-black wall, one pink discharge with a pale glass core, electrode red only at tube ends.",
+      "Glow appears on tube elements and nowhere else; lit means on or selected.",
+      "Three faces with three jobs: script for the sign, Tilt Neon for headings, Barlow for reading.",
+      "Pill tubes for every control, 22px rounded panels for media and containers.",
+      "Ignition, not decoration: entrances rise once, the sign bends in and flickers on."
+    ],
+    "rules": [
+      {
+        "name": "The Lit Means On Rule",
+        "body": "Glow (neon fill plus halo) marks an element that is a tube and is switched on: selected, open, marked, or the sign itself. A tube at rest is steel or clear glass. Never glow a card, heading or photo.",
+        "section": "colors"
+      },
+      {
+        "name": "The Electrode Rule",
+        "body": "Electrode red appears only as small caps at the two ends of a tube run. If there is no tube end, there is no red.",
+        "section": "colors"
+      },
+      {
+        "name": "The One Name Rule",
+        "body": "The script face writes \"Soichi Street\" and nothing else.",
+        "section": "typography"
+      },
+      {
+        "name": "The Sentence Case Rule",
+        "body": "No uppercase, no letter-spacing on labels; hierarchy comes from face and size.",
+        "section": "typography"
+      },
+      {
+        "name": "The No Lift Rule",
+        "body": "Nothing floats. A surface separates by tone; a tube separates by light.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Do treat every new interactive state as a tube switching on: steel or clear glass at rest, pink plus soft glow when active.",
+      "Do cap tube runs with electrode red at their real ends only.",
+      "Do use pills for controls and 22px panels for media and containers.",
+      "Do put text on pink fills in the wall color, and keep reading text in Barlow at 1.125rem.",
+      "Do separate surfaces by wall tone (wall, wall shade, wall recess).",
+      "Do keep every reveal and the ignition behind `prefers-reduced-motion: no-preference`."
+    ],
+    "donts": [
+      "Don't glow anything that is not a tube: no halos on photos, panels, headings or body text.",
+      "Don't add a second accent hue; the only other color is electrode red, and only at tube ends.",
+      "Don't use drop shadows for elevation.",
+      "Don't set any word other than the business name in the script face.",
+      "Don't use uppercase labels, tracked labels, or small labels above headings."
+    ]
+  }
+}

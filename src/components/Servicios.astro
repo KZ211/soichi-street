@@ -1,0 +1,235 @@
+---
+import { Image } from 'astro:assets';
+import { servicios } from '../data/site';
+---
+
+<section class="servicios" id="servicios" aria-labelledby="servicios-title" data-reveal>
+  <div class="wrap grid">
+    <div class="ring-wrap" data-rise style="--i:1">
+      <div class="ring" aria-hidden="true"></div>
+      <div class="disc">
+        {
+          servicios.map((s, i) =>
+            s.image ? (
+              <Image
+                src={s.image}
+                alt={s.alt ?? ''}
+                widths={[360, 560, 720]}
+                sizes="(min-width: 900px) 34vw, 80vw"
+                class:list={['shot', { on: i === 0 }]}
+                data-shot={s.id}
+              />
+            ) : (
+              <svg class:list={['shot', 'arc', { on: i === 0 }]} data-shot={s.id} viewBox="0 0 200 200" role="img" aria-label="Chispa de soldadura dibujada en neón">
+                <path d="M100 30 L84 92 L112 98 L92 170" />
+                <path d="M100 30 L84 92 L112 98 L92 170" class="core" />
+              </svg>
+            ),
+          )
+        }
+      </div>
+      <p class="fact" aria-live="polite">{servicios[0].fact}</p>
+    </div>
+
+    <div class="list">
+      <h2 id="servicios-title" data-rise>Lo que se hace en el taller</h2>
+      <ul role="list">
+        {
+          servicios.map((s, i) => (
+            <li data-rise style={`--i:${i + 1}`}>
+              <button type="button" aria-pressed={i === 0 ? 'true' : 'false'} data-id={s.id} data-fact={s.fact}>
+                {s.name}
+              </button>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </div>
+</section>
+
+<script>
+  // Lista con vista previa: apuntar o tocar un servicio enciende su foto dentro del aro.
+  const root = document.querySelector<HTMLElement>('.servicios');
+  if (root) {
+    const buttons = root.querySelectorAll<HTMLButtonElement>('button[data-id]');
+    const shots = root.querySelectorAll<HTMLElement>('[data-shot]');
+    const fact = root.querySelector<HTMLElement>('.fact');
+    const select = (btn: HTMLButtonElement) => {
+      buttons.forEach((b) => b.setAttribute('aria-pressed', String(b === btn)));
+      shots.forEach((s) => s.classList.toggle('on', s.dataset.shot === btn.dataset.id));
+      if (fact) fact.textContent = btn.dataset.fact ?? '';
+    };
+    buttons.forEach((btn) => {
+      btn.addEventListener('click', () => select(btn));
+      btn.addEventListener('pointerenter', (e) => {
+        if (e.pointerType === 'mouse') select(btn);
+      });
+      btn.addEventListener('focus', () => select(btn));
+    });
+  }
+</script>
+
+<style>
+  .servicios {
+    padding-block: var(--section);
+  }
+
+  .grid > * {
+    min-width: 0;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(2rem, 5vw, 6rem);
+    align-items: center;
+  }
+
+  .list {
+    order: -1;
+  }
+
+  h2 {
+    max-width: 12ch;
+    color: var(--muted);
+  }
+
+  ul {
+    list-style: none;
+    margin: 1.5rem 0 0;
+    padding: 0;
+  }
+
+  button {
+    display: flex;
+    align-items: center;
+    gap: 0.9rem;
+    padding: 0.2rem 0;
+    background: none;
+    border: 0;
+    cursor: pointer;
+    font-family: var(--font-head);
+    font-size: var(--step-h3);
+    line-height: 1.15;
+    color: var(--muted);
+    text-align: left;
+    transition: color var(--t-hover) ease;
+  }
+
+  /* La viñeta es un tramo corto de tubo */
+  button::before {
+    content: '';
+    width: 0.9em;
+    height: 4px;
+    border-radius: 2px;
+    background: var(--steel);
+    transition:
+      background-color var(--t-hover) ease,
+      box-shadow var(--t-hover) ease,
+      width var(--t-ui) var(--ease-out);
+  }
+
+  button:hover,
+  button[aria-pressed='true'] {
+    color: var(--ink);
+  }
+
+  button[aria-pressed='true']::before {
+    width: 1.4em;
+    background: var(--neon);
+    box-shadow: var(--glow-soft); /* taste-skill-ignore: neon glow is the tube material of the chosen world */
+  }
+
+  .ring-wrap {
+    position: relative;
+    aspect-ratio: 1;
+    width: min(100%, 64vh, 640px);
+    justify-self: center;
+  }
+
+  .ring {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    border: 5px solid var(--neon-core);
+    box-shadow: /* taste-skill-ignore: neon glow is the tube material of the chosen world */
+      0 0 0 3px var(--neon),
+      0 0 26px 4px rgb(255 63 164 / 0.55),
+      inset 0 0 26px 4px rgb(255 63 164 / 0.4);
+  }
+
+  .disc {
+    position: absolute;
+    inset: 22px;
+    border-radius: 50%;
+    overflow: hidden;
+    background: var(--wall-2);
+  }
+
+  .shot {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transform: scale(1.04);
+    transition:
+      opacity var(--t-ui) ease,
+      transform 600ms var(--ease-out);
+  }
+
+  .shot.on {
+    opacity: 1;
+    transform: none;
+  }
+
+  .arc {
+    padding: 18%;
+  }
+
+  .arc path {
+    fill: none;
+    stroke: var(--neon);
+    stroke-width: 10;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    filter: drop-shadow(0 0 8px var(--neon)); /* taste-skill-ignore: neon glow is the tube material of the chosen world */
+  }
+
+  .arc .core {
+    stroke: var(--neon-core);
+    stroke-width: 3;
+  }
+
+  .fact {
+    position: absolute;
+    left: 50%;
+    bottom: -4.5rem;
+    transform: translateX(-50%);
+    width: min(30ch, 100%);
+    text-align: center;
+    color: var(--ink);
+  }
+
+  @media (max-width: 900px) {
+    .grid {
+      grid-template-columns: 1fr;
+    }
+
+    .list {
+      order: 0;
+    }
+
+    .ring-wrap {
+      width: min(86vw, 26rem);
+      margin-bottom: 5rem;
+    }
+
+
+    button {
+      font-size: var(--step-h3);
+    }
+  }
+</style>
