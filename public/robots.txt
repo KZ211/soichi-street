@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://soichi-street.vercel.app/sitemap-index.xml

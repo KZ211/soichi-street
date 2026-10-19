@@ -1,0 +1,62 @@
+---
+import { Image } from 'astro:assets';
+import mascota from '../assets/mascota-cara.jpg';
+import Presupuesto from './Presupuesto.tsx';
+---
+
+<section class="presupuesto" id="presupuesto" aria-labelledby="presupuesto-title" data-reveal>
+  <div class="wrap">
+    <div class="intro">
+      <Image src={mascota} alt="La mascota de Soichi Street" width={240} height={240} class="face" data-rise />
+      <div>
+        <h2 id="presupuesto-title" data-rise style="--i:1">Marcá lo que hay que arreglar</h2>
+        <p data-rise style="--i:2">
+          Elegí las partes y el trabajo. Te armamos el mensaje para WhatsApp; vos sumás las fotos y te pasamos el
+          presupuesto.
+        </p>
+      </div>
+    </div>
+    <div data-rise style="--i:3">
+      <Presupuesto client:visible />
+    </div>
+  </div>
+</section>
+
+<style>
+  .presupuesto {
+    padding-block: var(--section);
+    background: var(--wall-2);
+  }
+
+  .intro {
+    display: flex;
+    align-items: center;
+    gap: clamp(1.25rem, 3vw, 2.5rem);
+    margin-bottom: 3rem;
+  }
+
+  .face {
+    flex: none;
+    width: clamp(6rem, 12vw, 9.5rem);
+    height: auto;
+    border-radius: 50%;
+    box-shadow: 0 0 0 4px var(--neon-core), 0 0 0 7px var(--neon), 0 0 30px rgb(255 63 164 / 0.55); /* taste-skill-ignore: neon glow is the tube material of the chosen world */
+  }
+
+  h2 {
+    max-width: 16ch;
+  }
+
+  .intro p {
+    margin-top: 1rem;
+    max-width: 52ch;
+    color: var(--ink);
+  }
+
+  @media (max-width: 640px) {
+    .intro {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+</style>

@@ -1,0 +1,128 @@
+---
+import { Image } from 'astro:assets';
+import mascota from '../assets/mascota.jpg';
+import { site, waDefault } from '../data/site';
+import Icon from './Icon.astro';
+import NeonSign from './NeonSign.astro';
+
+const year = new Date().getFullYear();
+---
+
+<footer class="footer" data-reveal>
+  <div class="wrap">
+    <div class="sign-row">
+      <NeonSign layout="one" class="sign" />
+      <Image src={mascota} alt="La mascota de Soichi Street con anteojos negros y orejas de gato" width={480} class="mascota" />
+    </div>
+
+    <div class="cols">
+      <div>
+        <p class="h">Taller</p>
+        <p>Chapa &amp; pintura</p>
+        <p>{site.zone}</p>
+        <p class="tbc">Horarios: a confirmar</p>
+      </div>
+      <div>
+        <p class="h">Contacto</p>
+        <p><a href={waDefault} target="_blank" rel="noopener">WhatsApp {site.phoneLabel}</a></p>
+        <p><a href={site.instagram} target="_blank" rel="noopener">Instagram {site.instagramHandle}</a></p>
+      </div>
+      <nav aria-label="Secciones, pie">
+        <p class="h">En esta página</p>
+        <p><a href="#servicios">Servicios</a></p>
+        <p><a href="#trabajos">Trabajos</a></p>
+        <p><a href="#proceso">Proceso</a></p>
+        <p><a href="#presupuesto">Presupuesto</a></p>
+      </nav>
+    </div>
+
+    <div class="last">
+      <p>© {year} {site.name}</p>
+      <a class="btn" href={waDefault} target="_blank" rel="noopener">
+        <Icon name="whatsapp" />
+        Escribinos
+      </a>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    padding: var(--section) 0 2.5rem;
+  }
+
+  .sign-row {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: end;
+    gap: 2rem;
+  }
+
+  .mascota {
+    width: clamp(9rem, 18vw, 15rem);
+    height: auto;
+    border-radius: var(--radius);
+  }
+
+  .cols {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin-top: 3.5rem;
+    font-size: var(--step-small);
+  }
+
+  .h {
+    margin-bottom: 0.5rem;
+    font-family: var(--font-head);
+    font-size: var(--step-body);
+    color: var(--neon-core);
+  }
+
+  .cols p {
+    line-height: 1.9;
+  }
+
+  .cols a {
+    text-decoration: none;
+  }
+
+  .cols a:hover {
+    color: var(--neon-core);
+    text-decoration: underline;
+    text-underline-offset: 0.3em;
+  }
+
+  .tbc {
+    color: var(--muted);
+  }
+
+  .last {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 3.5rem;
+    font-size: var(--step-small);
+    color: var(--muted);
+  }
+
+  @media (max-width: 760px) {
+    .sign-row {
+      grid-template-columns: 1fr;
+    }
+
+    .mascota {
+      width: 9rem;
+    }
+
+    .cols {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .cols nav {
+      grid-column: 1 / -1;
+    }
+  }
+</style>

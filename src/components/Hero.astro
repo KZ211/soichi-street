@@ -1,0 +1,139 @@
+---
+import { site, waDefault } from '../data/site';
+import Icon from './Icon.astro';
+import NeonSign from './NeonSign.astro';
+
+const servicios = ['Chapa', 'Pintura', 'Pulido', 'Soldadura'];
+---
+
+<section class="hero" id="inicio" aria-labelledby="hero-title" data-reveal>
+  <h1 id="hero-title" class="sr-only">{site.name}: chapa y pintura en {site.zone}</h1>
+
+  <div class="sign">
+    <NeonSign layout="one" ignite class="wide" />
+    <NeonSign layout="two" ignite class="narrow" />
+  </div>
+
+  <p class="line" data-rise style="--i:3">Chapa &amp; pintura en {site.zone}</p>
+
+  <ul class="run" aria-label="Servicios">
+    {servicios.map((s, i) => <li data-rise style={`--i:${4 + i}`}>{s}</li>)}
+  </ul>
+
+  <div class="actions" data-rise style="--i:8">
+    <a class="btn" href={waDefault} target="_blank" rel="noopener">
+      <Icon name="whatsapp" />
+      Pedir presupuesto por WhatsApp
+    </a>
+    <a class="btn btn-ghost" href="#trabajos">Ver trabajos</a>
+  </div>
+</section>
+
+<style>
+  .hero {
+    min-height: 100svh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: clamp(1.25rem, 2.5vw, 2rem);
+    padding: 7rem var(--margin) 4rem;
+    text-align: center;
+  }
+
+  .sign {
+    width: min(100%, 1200px);
+  }
+
+  .sign :global(.narrow) {
+    display: none;
+  }
+
+  @media (max-width: 640px) {
+    .sign :global(.wide) {
+      display: none;
+    }
+
+    .sign :global(.narrow) {
+      display: block;
+      width: min(100%, 26rem);
+      margin-inline: auto;
+    }
+  }
+
+  .line {
+    font-family: var(--font-head);
+    font-size: var(--step-h3);
+    color: var(--ink);
+  }
+
+  /* Los servicios cuelgan del mismo tubo */
+  .run {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.75rem 2.5rem;
+    list-style: none;
+    margin: 0;
+    padding: 1.25rem 0 0;
+    font-weight: 600;
+    font-size: var(--step-body);
+    color: var(--muted);
+  }
+
+  .run::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    border-radius: 2px;
+    background: var(--neon);
+    box-shadow: var(--glow-soft); /* taste-skill-ignore: neon glow is the tube material of the chosen world */
+  }
+
+  .run li {
+    position: relative;
+  }
+
+  .run li::before {
+    content: '';
+    position: absolute;
+    top: -1.25rem;
+    left: 50%;
+    width: 2px;
+    height: 0.9rem;
+    background: var(--steel);
+  }
+
+  .actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem 1.5rem;
+    margin-top: 0.75rem;
+  }
+
+  @media (max-width: 640px) {
+    .hero {
+      padding-top: 6rem;
+      justify-content: flex-start;
+    }
+
+    .run {
+      gap: 0.5rem 1.5rem;
+    }
+
+    .actions {
+      flex-direction: column;
+      align-items: stretch;
+      width: 100%;
+    }
+
+    .actions .btn {
+      justify-content: center;
+    }
+  }
+</style>
